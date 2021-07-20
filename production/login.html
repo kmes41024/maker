@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>F^2</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>	
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <!-- Bootstrap -->
+        <link href = "../../maker/vendors/bootstrap/dist/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link href="../../maker/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="../../maker/vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- jQuery custom content scroller -->
+        <link href="../../maker/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    
+        <!-- Custom Theme Style -->
+        <link href="../../maker/build/css/custom.min.css" rel="stylesheet">
+        <style>
+            .outer {
+                position: relative;   
+            }
+            .inner {
+                background-color: #d5e1a3;
+                position: absolute;   
+                top: 50%;             
+                transform: translateY(-50%);   
+            }
+        </style>
+        <script>
+            function start()
+			{
+				var btn = document.getElementById('btn1');
+                btn.addEventListener('click', send, false);
+			}
+            
+            function send()
+            {
+                var idNumber = document.getElementById('idNumber').value;
+                var password = document.getElementById('password').value;
+
+                if(idNumber != "" && password != "")
+                {
+                    $.ajax({
+                        url:"./checkAccount.php",
+                        data:{
+                            idNumber:idNumber,password:password
+                        },
+                        type:"POST",
+                        datatype:"html",
+                        
+                        success:function(output){
+                            console.log(output);
+                        },
+                        error:function(){
+                            alert("Request failed");
+                        }
+                    });
+                }
+            }
+
+            window.addEventListener("load",start,false);
+        </script>
+    </head>
+    <body style = "background-color:#74A709;font-family: Microsoft JhengHei;">
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav class="nav navbar-nav" style = "background-color: #F7E277;">
+                    <img src="img/logo.png" alt="" style = "height:20%;width:20%">
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div role="main">
+            <div class = "">
+                <div style = "height:100px"></div>
+                <table height = "250px" width = "100%">
+                    <tr height = "40%">
+                        <td></td>
+                    </tr>
+                    <tr height = "15%">
+                        <td align = "center">
+                            <h5 style = "color:white">為確保非遺失物主人的人領走遺失物，我們希望留下您的資料</h5>
+                        </td>
+                    </tr>
+                    <tr height = "5%">
+                        <td></td>
+                    </tr>
+                    <tr height = "40%">
+                        <td>
+                            <table align = "center" width = "80%">
+                                <tr>
+                                    <td align = "center" colspan = "2">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" style = "border-top-left-radius:15px;border-bottom-left-radius:15px;background: #ffffff;border-right-color: #ffffff;border:0px"><i class='fas' style = "color:grey">&#xf2bb;</i></span>
+                                            </div>
+                                            <input type="text" class="form-control" placeholder="輸入學號" style = "border-top-right-radius:15px;border-bottom-right-radius:15px;border-left-color:#ffffff;border:0px" id = "idNumber" name = "idNumber">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan = "2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan = "2"></td>
+                                </tr>
+                                <tr>
+                                    <td align = "center" colspan = "2">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                              <span class="input-group-text" style = "border-top-left-radius:15px;border-bottom-left-radius:15px;background: #ffffff;border-right-color: #ffffff;border:0px"><i class='fas' style = "color:grey">&#xf13e;</i></span>
+                                            </div>
+                                            <input type="password" class="form-control" placeholder="輸入密碼" style = "border-top-right-radius:15px;border-bottom-right-radius:15px;border-left-color:#ffffff;border:0px" id = "password" name = "password">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan = "2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan = "2"></td>
+                                </tr>
+                                <tr>
+                                    <td align = "left">
+                                        <button type="button" class="btn btn-round" style = "border-radius:15px;background-color: #ffffff;width:95%;" onclick = "javascript:location.href = './register.html'">註冊</button>
+                                    </td>
+                                    <td align = "right">
+                                        <button type="button" class="btn btn-round" style = "border-radius:15px;background-color: #FFD500;width:95%" id = "btn1" name = "btn1">登入</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- /page content -->
+        
+    </body>
+</html>
